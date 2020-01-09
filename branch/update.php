@@ -7,6 +7,7 @@ $name=$_GET['Name'];
 $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
 $bg=$_GET['Blood_gp'];
+setcookie('no',$Sno,time()+1000);
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +32,11 @@ $name=$_GET['Name'];
 $email=$_GET['email'];
 $phno=$_GET['phno'];
 $bg=$_GET['blood_gp'];
-echo "Button Pressed";
-$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno=$Sno";
+$no=$_COOKIE['no'];
+$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno='$no'";
 $data =mysqli_query($conn,$query);
 
-$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno=$Sno";
+$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno='$no'";
 $temp_data = mysqli_query($conn, $query); 
 if ($data && $temp_data) {
 		echo "<font color='green'>Record Updated Successfully. <a href='display.php'> View Updated Records</a>";

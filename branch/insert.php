@@ -40,7 +40,7 @@ $query = "INSERT INTO temp(Name, Email, Phone_no, Blood_gp, City) VALUES ('$name
 $temp_data = mysqli_query($conn, $query); 
 if($data && $temp_data)
 		{
-		echo "Data inserted successfully";
+		echo "<font color='green'>Data inserted successfully";
 
 		}
 	}
