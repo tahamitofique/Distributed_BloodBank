@@ -1,12 +1,12 @@
 <?php
 include("connection.php");
-$Sno=$_GET['Sno'];
+$DonorID=$_GET['DonorID'];
 $name=$_GET['Name'];
 $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
 $bg=$_GET['Blood_gp'];
-
-$query = "DELETE FROM donors WHERE Sno='$Sno'"; 
+echo "$Sno";
+$query = "DELETE FROM donors WHERE DonorID='$DonorID'"; 
 $data = mysqli_query($conn,$query);
 
 $query = "DELETE FROM temp WHERE Name='$name' AND Email='$email' AND Phone_no='$phno' AND Blood_gp='$bg'";

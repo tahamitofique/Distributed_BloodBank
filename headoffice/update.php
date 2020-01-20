@@ -2,12 +2,11 @@
 <?php
 include("connection.php");
 error_reporting(0);
-$Sno=$_GET['Sno'];
+$Sno=$_GET['DonorID'];
 $name=$_GET['Name'];
 $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
 $bg=$_GET['Blood_gp'];
-$city=$_GET['City'];
 setcookie('no',$Sno,time()+1000);
 ?>
 
@@ -23,7 +22,6 @@ setcookie('no',$Sno,time()+1000);
 	Email <input type="text" name="email" value="<?php echo ($email);?>"><br><br>
 	Phone no. <input type="text" name="phno" value="<?php echo ($phno);?>"><br><br>
 	blood Group <input type="text" name="blood_gp" value="<?php echo ($bg);?>"><br><br>
-	City <input type="text" name="city" value="<?php echo ($city);?>"><br><br>
 	<input type="submit" name="submit" value="Update">
 </form>
 <?php
@@ -34,11 +32,11 @@ $name=$_GET['Name'];
 $email=$_GET['email'];
 $phno=$_GET['phno'];
 $bg=$_GET['blood_gp'];
-$city=$_GET['city'];
 $no=$_COOKIE['no'];
-$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg',City='$city' WHERE Sno='$no'";
+$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
 $data =mysqli_query($conn,$query);
-if ($data) {
+ 
+if ($data ) {
 		echo "<font color='green'>Record Updated Successfully. <a href='display.php'> View Updated Records</a>";
 		# code...
 	}

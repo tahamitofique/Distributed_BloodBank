@@ -2,7 +2,7 @@
 <?php
 include("connection.php");
 error_reporting(0);
-$Sno=$_GET['Sno'];
+$Sno=$_GET['DonorID'];
 $name=$_GET['Name'];
 $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
@@ -33,10 +33,10 @@ $email=$_GET['email'];
 $phno=$_GET['phno'];
 $bg=$_GET['blood_gp'];
 $no=$_COOKIE['no'];
-$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno='$no'";
+$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
 $data =mysqli_query($conn,$query);
 
-$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE Sno='$no'";
+$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
 $temp_data = mysqli_query($conn, $query); 
 if ($data && $temp_data) {
 		echo "<font color='green'>Record Updated Successfully. <a href='display.php'> View Updated Records</a>";

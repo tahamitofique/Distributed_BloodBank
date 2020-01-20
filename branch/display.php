@@ -18,7 +18,7 @@ if($total != 0)
 	?> 
 	<table>
 		<tr>
-			<th>S.no	</th>
+			<th>Donor ID	</th>
 			<th>Name	</th>
 			<th>Email	</th>
 			<th>Phone no.	</th>
@@ -30,13 +30,14 @@ if($total != 0)
 		/*	echo $result['rollno']." ".$result['name']." ".$result['class']."<br/>";	*/
 	// for formatting purpose we drag the closing table tag to last
 	echo "<tr>
-			<td>". $result['Sno'] ."	</td>
+			<td>". $result['DonorID'] ."	</td>
 			<td>". $result['Name'] ."	</td>
 			<td>". $result['Email'] ."</td>
 			<td>". $result['Phone_no'] ."</td>
 			<td>". $result['Blood_gp'] ."</td>
-			<td><a href='update.php?Name=$result[Name]&Email=$result[Email]&Phone_no=$result[Phone_no]&Blood_gp=$result[Blood_gp]&Sno=$result[Sno]'>Edit </a></td>
-			<td><a href='delete.php?Name=$result[Name]&Email=$result[Email]&Phone_no=$result[Phone_no]&Blood_gp=$result[Blood_gp]&Sno=$result[Sno]'>Delete</a></td>
+			<td><a href='update.php?Name=$result[Name]&Email=$result[Email]&Phone_no=$result[Phone_no]&Blood_gp=$result[Blood_gp]&DonorID=$result[DonorID]'>Edit </a></td>
+			<td><a href='delete.php?Name=$result[Name]&Email=$result[Email]&Phone_no=$result[Phone_no]&Blood_gp=$result[Blood_gp]&DonorID=$result[DonorID]'>Delete</a></td>
+			<td><a href='add.php?DonorID=$result[DonorID]'>Add Record</a></td>
 		</tr>";								}
 }else{	//echo" No data found in table"; 
 	}

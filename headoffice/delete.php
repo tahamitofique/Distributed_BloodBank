@@ -1,8 +1,13 @@
 <?php
 include("connection.php");
-$Sno=$_GET['Sno'];
-$query = "DELETE FROM donors WHERE Sno='$Sno'"; 
+$DonorID=$_GET['DonorID'];
+$name=$_GET['Name'];
+$email=$_GET['Email'];
+$phno=$_GET['Phone_no'];
+$bg=$_GET['Blood_gp'];
+$query = "DELETE FROM donors WHERE DonorID='$DonorID'"; 
 $data = mysqli_query($conn,$query);
+
 if($data)
 {
 	//echo "<font color='green'>Record deleted successfully";
