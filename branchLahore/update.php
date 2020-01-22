@@ -1,14 +1,22 @@
+
 <?php
 include("connection.php");
 error_reporting(0);
+$Sno=$_GET['DonorID'];
+$name=$_GET['Name'];
+$email=$_GET['Email'];
+$phno=$_GET['Phone_no'];
+$bg=$_GET['Blood_gp'];
+setcookie('no',$Sno,time()+1000);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<title>Insert</title>
+		<title>Update</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all" />
@@ -24,23 +32,25 @@ error_reporting(0);
     <link href="css/main.css" rel="stylesheet" media="all" />
 </head>
 <body>
+  
 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title center bold">Add Donor</h2>
-                    <form class="insert" action="" method="GET">
+                    <h2 class="title center bold">here</h2>
+                
+                    <form class="insert"  action="" method="GET">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Name</label>
-                                    <input class="input--style-4" type="text" name="Name" />
+                                    <input class="input--style-4" type="text" name="Name" value="<?php echo ($name);?>" />
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="text" name="Email" />
+                                    <input class="input--style-4" type="text" name="email" value="<?php echo ($email);?>" />
                                 </div>
                             </div>
                         </div>
@@ -48,28 +58,20 @@ error_reporting(0);
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="Phone_no" />
+                                    <input class="input--style-4" type="text" name="phno" value="<?php echo ($phno);?>" />
                                 </div>
                             </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Date of Birth</label>
-                                    <input class="input--style-4" type="text" name="DOB" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Blood Group</label>
-                                    <input class="input--style-4" type="text" name="blood_gp" />
+                                    <input class="input--style-4" type="text" name="blood_gp" value="<?php echo ($bg);?>" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="p-t-15 center">
-                        <input class="btn btn--radius-2 btn--blue" type="submit" name="submit" value="Submit">
-                        
+                        <input class="btn btn--radius-2 btn--blue" type="submit" name="submit" value="Update">
+                            
                         </div>
                     </form>
                 </div>
@@ -80,37 +82,28 @@ error_reporting(0);
 <?php
 if($_GET['submit'])
 {
-// getting data through global array
+	//AFTER UPDATE,SNO DONT EXIST
 $name=$_GET['Name'];
-$email=$_GET['Email'];
-$phno=$_GET['Phone_no'];
+$email=$_GET['email'];
+$phno=$_GET['phno'];
 $bg=$_GET['blood_gp'];
-$DB=$_GET['DOB'];
-$city='Karachi';
+$no=$_COOKIE['no'];
+$query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
+$data =mysqli_query($conn,$query);
 
-//echo "$name";  //displaying data on page
-
-//check that form fields are not empty
-if($name !="" && $email !="" && $phno !="" && $bg !="")
-	{
-// Now inserting data into database
-$query = "INSERT INTO donors(Name, Email, Phone_no, DOB, Blood_gp, City) VALUES ('$name','$email','$phno','$DB','$bg','$city')";
-$data = mysqli_query($conn, $query); 
-
-//$query = "INSERT INTO temp(Name, Email, Phone_no, DOB, Blood_gp, City) VALUES ('$name','$email','$phno','$DB','$bg','$city')";
-//$temp_data = mysqli_query($conn, $query); 
-if($data )
-		{
-		echo "<font color='green'>Data inserted successfully";
-
-		}
+$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
+$temp_data = mysqli_query($conn, $query); 
+if ($data && $temp_data) {
+		echo "<font color='green'>Record Updated Successfully. <a href='display.php'> View Updated Records</a>";
+		# code...
 	}
 else
-{
-	echo "All fields are required";
+	{
+		echo "<font color='red'>Sorry! record updation failed.<a href='display.php'> View Records</a>";
+	}
 }
-}
-
+else
+	echo "<font color='blue'>Press Update button to save the changes";
 ?>
 </body>
   <!-- Jquery JS-->

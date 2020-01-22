@@ -84,7 +84,7 @@ $temp_dn_data = mysqli_query($conn, $query);
 if ($dn_data && $temp_dn_data) {
 		echo "<font color='green'>Record Added successfully";
 	?>
-	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/display.php" />
+	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/branchIslamabad/display.php" />
 	<?php
 	}
 else

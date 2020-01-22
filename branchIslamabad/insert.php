@@ -87,7 +87,7 @@ $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
 $bg=$_GET['blood_gp'];
 $DB=$_GET['DOB'];
-$city='Lahore';
+$city='Islamabad';
 
 //echo "$name";  //displaying data on page
 
@@ -111,6 +111,7 @@ else
 	echo "All fields are required";
 }
 }
+if($_GET['submit']){{
 	$db=mysqli_connect('192.168.43.172',"tahami","tahami123","bloodbank");
 	$query = "SELECT * from temp";
 $data = mysqli_query($conn, $query);
@@ -123,7 +124,7 @@ $phno=$row['Phone_no'];
 $bg=$row['Blood_gp'];
 $DoB=$_row['DOB'];
 
-    $data_send = "INSERT INTO donors(Name, Email, Phone_no, DOB, Blood_gp, City, ref) VALUES ('$name','$email','$phno','$DoB','$bg','Lahore','$d_id')";
+    $data_send = "INSERT INTO donors(Name, Email, Phone_no, DOB, Blood_gp, City, ref) VALUES ('$name','$email','$phno','$DoB','$bg','Islamabad','$d_id')";
 	$data1 = mysqli_query($db, $data_send);
 }
 $emp = "TRUNCATE Table temp";

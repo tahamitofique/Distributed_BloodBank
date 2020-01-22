@@ -16,7 +16,7 @@ if($data && $temp_data)
 	//echo "<font color='green'>Record deleted successfully";
 	echo "<script> alert('Record Deleted')</script>";
 	?>
-	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/display.php" />
+	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/branchIslamabad/display.php" />
 	<?php
 }
 else{

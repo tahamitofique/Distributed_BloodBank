@@ -79,12 +79,12 @@ if($quantity !="")
 $query = "INSERT INTO donations( `Quantity`, `Donor_id`) VALUES ('$quantity','$Sno')";
 $dn_data = mysqli_query($conn, $query); 
 
-//$query = "INSERT INTO temp_b( `Quantity`, `Donor_id`) VALUES ('$quantity','$Sno')";
-//$temp_dn_data = mysqli_query($conn, $query); 
-if ($dn_data) {
+$query = "INSERT INTO temp_b( `Quantity`, `Donor_id`) VALUES ('$quantity','$Sno')";
+$temp_dn_data = mysqli_query($conn, $query); 
+if ($dn_data && $temp_dn_data) {
 		echo "<font color='green'>Record Added successfully";
 	?>
-	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/headoffice/display.php" />
+	<meta http-equiv="refresh" content="0;url=http://localhost/bloodbank/branchLahore/display.php" />
 	<?php
 	}
 else

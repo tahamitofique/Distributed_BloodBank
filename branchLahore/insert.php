@@ -28,7 +28,7 @@ error_reporting(0);
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title center bold">Add Donor</h2>
+                    <h2 class="title center bold">Here</h2>
                     <form class="insert" action="" method="GET">
                         <div class="row row-space">
                             <div class="col-2">
@@ -69,6 +69,7 @@ error_reporting(0);
 
                         <div class="p-t-15 center">
                         <input class="btn btn--radius-2 btn--blue" type="submit" name="submit" value="Submit">
+	<input class="btn btn--radius-2 btn--blue" type="submit" name="send_data" value="Send">
                         
                         </div>
                     </form>
@@ -86,7 +87,7 @@ $email=$_GET['Email'];
 $phno=$_GET['Phone_no'];
 $bg=$_GET['blood_gp'];
 $DB=$_GET['DOB'];
-$city='Karachi';
+$city='Lahore';
 
 //echo "$name";  //displaying data on page
 
@@ -97,9 +98,9 @@ if($name !="" && $email !="" && $phno !="" && $bg !="")
 $query = "INSERT INTO donors(Name, Email, Phone_no, DOB, Blood_gp, City) VALUES ('$name','$email','$phno','$DB','$bg','$city')";
 $data = mysqli_query($conn, $query); 
 
-//$query = "INSERT INTO temp(Name, Email, Phone_no, DOB, Blood_gp, City) VALUES ('$name','$email','$phno','$DB','$bg','$city')";
-//$temp_data = mysqli_query($conn, $query); 
-if($data )
+$query = "INSERT INTO temp(Name, Email, Phone_no, DOB, Blood_gp, City) VALUES ('$name','$email','$phno','$DB','$bg','$city')";
+$temp_data = mysqli_query($conn, $query); 
+if($data && $temp_data)
 		{
 		echo "<font color='green'>Data inserted successfully";
 
@@ -110,7 +111,43 @@ else
 	echo "All fields are required";
 }
 }
+if($_GET['submit']){{
+	$db=mysqli_connect('192.168.43.172',"tahami","tahami123","bloodbank");
+	$query = "SELECT * from temp";
+$data = mysqli_query($conn, $query);
 
+while($row = mysqli_fetch_array($data)){
+$d_id=$row['DonorID'];
+$name=$row['Name'];
+$email=$row['Email'];
+$phno=$row['Phone_no'];
+$bg=$row['Blood_gp'];
+$DoB=$_row['DOB'];
+
+    $data_send = "INSERT INTO donors(Name, Email, Phone_no, DOB, Blood_gp, City, ref) VALUES ('$name','$email','$phno','$DoB','$bg','Lahore','$d_id')";
+	$data1 = mysqli_query($db, $data_send);
+}
+$emp = "TRUNCATE Table temp";
+$data = mysqli_query($conn, $emp);
+}
+
+{
+$queryy = "SELECT * from temp_b";
+$data_b = mysqli_query($conn, $queryy);
+
+while($roww = mysqli_fetch_array($data_b)){
+$d_id=$roww['Donor_id'];
+$date=$roww['Date'];
+$quantity=$roww['Quantity'];
+
+    $data_sendd = "INSERT INTO donations( `Quantity`, `Donor_id`,`ref`) VALUES ('$quantity','$d_id','$date')";
+	$data11 = mysqli_query($db, $data_sendd);
+}
+
+$empp = "TRUNCATE Table temp_b";
+$dataa = mysqli_query($conn, $empp); 
+}
+}
 ?>
 </body>
   <!-- Jquery JS-->

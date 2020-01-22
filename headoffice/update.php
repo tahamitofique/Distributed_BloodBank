@@ -32,14 +32,14 @@ setcookie('no',$Sno,time()+1000);
     <link href="css/main.css" rel="stylesheet" media="all" />
 </head>
 <body>
-
+  
 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title center bold">Change here</h2>
-                   
-                    <form class="insert" action="" method="GET">
+                    <h2 class="title center bold">here</h2>
+                
+                    <form class="insert"  action="" method="GET">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -70,14 +70,14 @@ setcookie('no',$Sno,time()+1000);
                         </div>
 
                         <div class="p-t-15 center">
-                            <input class="btn btn--radius-2 btn--blue"  name="submit" type="submit" value="Update"/>
+                        <input class="btn btn--radius-2 btn--blue" type="submit" name="submit" value="Update">
+                            
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 
 <?php
 if($_GET['submit'])
@@ -90,7 +90,9 @@ $bg=$_GET['blood_gp'];
 $no=$_COOKIE['no'];
 $query = "UPDATE donors SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
 $data =mysqli_query($conn,$query);
- 
+
+//$query = "UPDATE temp SET Name='$name',Email='$email',Phone_no='$phno',Blood_gp='$bg' WHERE DonorID='$no'";
+//$temp_data = mysqli_query($conn, $query); 
 if ($data ) {
 		echo "<font color='green'>Record Updated Successfully. <a href='display.php'> View Updated Records</a>";
 		# code...
